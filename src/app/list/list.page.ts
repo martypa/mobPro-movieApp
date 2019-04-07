@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Movie} from '../../interface/Movie';
+import {HttpClient} from '@angular/common/http';
+import {MovieAbfrageService} from '../movie-abfrage.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -7,28 +11,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
   private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
+  private mov: Movie;
+
+
+  // public items: Array<{ title: string; note: string; icon: string }> = [];
+  public movies: Array<String> = [
+      "The Lord of the Rings",
+      "Harry Potter",
+      "Scrubs",
+      "Suits",
+      "Godfather"
   ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+  constructor(private httpClient: HttpClient, private service: MovieAbfrageService,
+              private navCtrl: NavController) {
+  }
+
+
+  public movieSelected(movie): void {
+    let movieIndex = this.findIndex(movie);
+    const movieJson = this.httpClient.get("../../assets/movies/" + movieIndex + ".json");
+    movieJson.subscribe(data => {
+      const movie: Movie = <Movie>data;
+      this.service.setData(movie);
+      this.navCtrl.navigateForward('/detail');
+    });
+  }
+
+  private findIndex(string): any {
+    for (let i = 0; i < 5; i++) {
+      if( this.movies[i] === string){
+        return (i + 1);
+      }
     }
   }
+
+
+
+
 
   ngOnInit() {
   }

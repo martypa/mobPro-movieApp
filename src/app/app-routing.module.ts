@@ -14,7 +14,10 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
+  { path: 'native', loadChildren: './native/native.module#NativePageModule' },
+  { path: 'search', loadChildren: './search/search.module#SearchPageModule' }
 ];
 
 @NgModule({
