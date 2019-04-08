@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
+import {BatteryStatus} from '@ionic-native/battery-status/ngx';
+import {Network} from '@ionic-native/network/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    BatteryStatus,
+    Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

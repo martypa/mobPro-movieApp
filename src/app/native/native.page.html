@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>native</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Native Functions
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card-title>Battery & Network State</ion-card-title>
+  <ion-card-content> Battery Info: {{batStat}}</ion-card-content>
+  <ion-card-content>Network Info: {{networkStat}}</ion-card-content>
 
 </ion-content>
